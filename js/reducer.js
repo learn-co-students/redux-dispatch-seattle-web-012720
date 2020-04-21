@@ -7,7 +7,25 @@ function changeState(state, action){
   }
 }
 
+function dispatch(action) {
+  state = changeState(state, action)
+  render()
+  
+  return state
+}
+
+function render() {
+  document.body.textContent = state.count
+}
+
 let state = {count: 0}
 let action = {type: 'INCREASE_COUNT'}
 
-changeState(state, action)
+// changeState(state, action)
+// dispatch(action)
+// dispatch(action)
+// render()
+
+let x = setInterval(function() {dispatch({type: 'INCREASE_COUNT'}); if (state.count > 100) {
+  clearInterval(x)
+}}, 10)
